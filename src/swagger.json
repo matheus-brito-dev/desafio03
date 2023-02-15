@@ -44,8 +44,79 @@
                         "description": "User already exists"
                     }
                 }
+            },
+            "get": {
+              "tags": ["Users"],
+              "summary": "List all users",
+              "description": "List all users if the user is an admin.",
+              "parameters": [
+                {
+                  "in": "header",
+                  "name": "user_id",
+                  "required": true,
+                  "type": "string",
+                  "format": "uuid"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "Success"
+                },
+                "400": {
+                  "description": "User is not an administrator"
+                }
+              }
             }
+          },
+          "/users/{user_id}": {
+            "get": {
+              "tags": ["Users"],
+              "summary": "Get user profile by ID",
+              "description": "To list a user you need the route param 'user_id'",
+              "parameters": [
+                {
+                  "in": "path",
+                  "name": "user_id",
+                  "required": true,
+                  "type": "string",
+                  "format": "uuid"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "Success"
+                },
+                "404": {
+                  "description": "User not exists"
+                }
+              }
+            }
+          },
+          "/users/{user_id}/admin": {
+            "patch": {
+              "tags": ["Users"],
+              "summary": "Turn an user as admin",
+              "description": "To update the user, you need the route param 'user_id'",
+              "parameters": [
+                {
+                  "in": "path",
+                  "name": "user_id",
+                  "required": true,
+                  "type": "string",
+                  "format": "uuid"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "Ok"
+                },
+                "404": {
+                  "description": "User not exists"
+                }
+              }
+            }
+          }
+        }
             
         }
-    }
-}
+    
